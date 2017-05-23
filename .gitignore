@@ -2,4 +2,4 @@
 /.vscode
 /build
 /lib
-publish_script.bat
+publish_script.ps1
