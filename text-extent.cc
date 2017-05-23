@@ -35,8 +35,8 @@ namespace textent{
 		int srcLength = args[2]->ToString()->Length();
 
 		wchar_t fontName[500], srcString[4000];
-		MultiByteToWideChar(CP_UTF8, 0, *pFontName, -1, fontName, strlen(*pFontName));
-		MultiByteToWideChar(CP_UTF8, 0, *pSrcString, -1, srcString, strlen(*pSrcString));
+		MultiByteToWideChar(CP_UTF8, 0, *pFontName, -1, fontName, 500);
+		MultiByteToWideChar(CP_UTF8, 0, *pSrcString, -1, srcString, 4000);
 
 		HDC hdc = CreateCompatibleDC(NULL);
 
