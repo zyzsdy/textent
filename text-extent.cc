@@ -29,37 +29,38 @@ namespace textent{
 		}
 
 		v8::String::Utf8Value pFontName(args[0]->ToString());
+		int fontLength = args[0]->ToString()->Length();
 		double font_size(args[1]->NumberValue());
 		v8::String::Utf8Value pSrcString(args[2]->ToString());
 		int srcLength = args[2]->ToString()->Length();
 
-		wchar_t *fontName, *srcString;
+		wchar_t fontName[500], srcString[4000];
 		MultiByteToWideChar(CP_UTF8, 0, *pFontName, -1, fontName, strlen(*pFontName));
 		MultiByteToWideChar(CP_UTF8, 0, *pSrcString, -1, srcString, strlen(*pSrcString));
 
-		HDC mdc = CreateCompatibleDC(NULL);
+		HDC hdc = CreateCompatibleDC(NULL);
 
-		HFONT dFont = CreateFontW(font_size,
-			0, 0, 0, 0, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH, /*not important*/
+		HFONT dFont = CreateFontW((int)font_size,
+			0, 0, 0, 0, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH, /*not important*/
 			fontName);
 
-		SelectObject(mdc, dFont); //load font
+		SelectObject(hdc, dFont); //load font
 		
-		SIZE *result;
+		SIZE result;
 		int resultWidth, resultHeight;
-		if (GetTextExtentPoint32W(mdc, srcString, srcLength, result)) {
-			resultWidth = result->cx;
-			resultHeight = result->cy;
+		if (GetTextExtentPoint32W(hdc, srcString, srcLength, &result)) {
+			resultWidth = result.cx;
+			resultHeight = result.cy;
 		}
 		else {
 			isolate->ThrowException(v8::Exception::Error(
-				String::NewFromUtf8(isolate, "Runtime error.")
+				String::NewFromUtf8(isolate, "GetTextExtent Error")
 			));
 			return;
 		}
 		
 		DeleteObject(dFont); //release font
-		DeleteDC(mdc);
+		DeleteDC(hdc);
 
 		Local<Object> returnobj = Object::New(isolate);
 		returnobj->Set(String::NewFromUtf8(isolate, "width"), Number::New(isolate, resultWidth));
