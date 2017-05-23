@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <string>
 
-namespace extent{
+namespace textent{
     using v8::FunctionCallbackInfo;
     using v8::Isolate;
     using v8::Local;
@@ -72,5 +72,5 @@ namespace extent{
 		NODE_SET_METHOD(exports, "render", Render);
     }
 
-    NODE_MODULE(extent, init)
+    NODE_MODULE(textent, init)
 }
