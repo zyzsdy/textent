@@ -1,3 +1,3 @@
-let extent = require('./build/Release/extent');
+let extent = require('./').default
 
-console.log(extent.render("微软雅黑", 25, "空空 和 小山药"));
+console.log(extent.render("微软雅黑", 22, "小山药和大空空"));
