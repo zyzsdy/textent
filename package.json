@@ -1,0 +1,35 @@
+{
+  "name": "extent",
+  "version": "1.0.0",
+  "description": "text extent renderer",
+  "main": "index.js",
+  "dependencies": {
+    "node-pre-gyp": "^0.6.34"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.55.0"
+  },
+  "bundledDependencies": [
+    "node-pre-gyp"
+  ],
+  "scripts": {
+    "test": "node test.js",
+    "prepublish": "npm ls",
+    "install": "node-pre-gyp install --fallback-to-build"
+  },
+  "binary": {
+    "module_name": "extent",
+    "module_path": "./lib/binding/",
+    "host": "https://zyzsdy_extent.s3-us-west-1.amazonaws.com"
+  },
+  "author": "zyzsdy",
+  "license": "MIT",
+  "gypfile": true,
+  "os": [
+    "win32"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zyzsdy/extent.git"
+  }
+}
