@@ -19,7 +19,7 @@
   "binary": {
     "module_name": "extent",
     "module_path": "./lib/binding/",
-    "host": "https://github.com/zyzsdy/extent/releases/download",
+    "host": "https://github.com/zyzsdy/extent/releases/download/",
     "remote_path": "{version}"
   },
   "author": "zyzsdy",
