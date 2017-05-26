@@ -1,5 +1,5 @@
 interface size{
-    width: nubmer;
+    width: number;
     height: number;
 }
 interface Textent{
