@@ -1,26 +1,11 @@
 {
   "name": "textent",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "text extent renderer",
   "main": "index.js",
-  "dependencies": {
-    "node-pre-gyp": "^0.6.34"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.55.0"
-  },
-  "bundledDependencies": [
-    "node-pre-gyp"
-  ],
   "scripts": {
     "test": "node test.js",
-    "install": "node-pre-gyp install --fallback-to-build"
-  },
-  "binary": {
-    "module_name": "textent",
-    "module_path": "./lib/binding/",
-    "host": "https://github.com/zyzsdy/textent/releases/download/",
-    "remote_path": "{version}"
+    "install": "node-gyp rebuild"
   },
   "author": "zyzsdy",
   "license": "MIT",
@@ -31,5 +16,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/zyzsdy/textent.git"
-  }
+  },
+  "keywords": [
+    "addon",
+    "extent"
+  ]
 }
